@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CallCenter", "CallCenter.vcproj", "{EDE19074-4525-4F5F-A074-7AA4B55503C6}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccProjectName0 = \u0022$/呼叫中心/开发域/ROOT/VS2003/CallCenter\u0022,\u0020KBHLAAAA
+		SccLocalPath0 = .
+		SccProvider0 = MSSCCI:Microsoft\u0020Visual\u0020SourceSafe
+		CanCheckoutShared = false
+		SolutionUniqueID = {9433E59B-D8C9-42DB-AF49-0B1FF2963703}
+		SccProjectUniqueName1 = CallCenter.vcproj
+		SccLocalPath1 = .
+		CanCheckoutShared = false
+	EndGlobalSection
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{EDE19074-4525-4F5F-A074-7AA4B55503C6}.Debug.ActiveCfg = Debug|Win32
+		{EDE19074-4525-4F5F-A074-7AA4B55503C6}.Debug.Build.0 = Debug|Win32
+		{EDE19074-4525-4F5F-A074-7AA4B55503C6}.Release.ActiveCfg = Release|Win32
+		{EDE19074-4525-4F5F-A074-7AA4B55503C6}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

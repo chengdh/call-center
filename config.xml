@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="GB2312"?>
+<CTI>
+<Node NodeId="1" Name="MainMenu1" Description="坐席主菜单" Type="1">
+	<Content>
+		<Voice>
+			<MainVoice Content="拨外线请按0，坐席登录请按1，坐席注销请按2，拨内线请按#号键。" VoicePath=".\Voice\Select1.wav"></MainVoice>
+			<PlayLimit Content="对不起，您的限播次数已到。" VoicePath=".\Voice\PlayLimit.wav"></PlayLimit>
+			<ErrorVoice Content="对不起，您的输入有误,请重新输入。" VoicePath=".\Voice\ErrorInput.wav"></ErrorVoice>
+		</Voice>
+		<ReplayNum Description="放音循环次数" Value="3"></ReplayNum>
+		<WaitTime Description="等待时间(秒)" Value="4"></WaitTime>
+		<NextNode>
+			<Key Code="1" NodeId="11"></Key>
+			<Key Code="2" NodeId="12"></Key>
+			<Key Code="#" NodeId="13"></Key>
+			<Key Code="0" NodeId="14"></Key>
+		</NextNode>
+	</Content>
+	<SubNode>
+		<Node NodeId="11" Name="Login" Description="坐席人员登录" Type="2">
+			<Content>
+				<Voice>
+					<Input1 Content="请输入用户代码,并以#号键结束。" VoicePath=".\Voice\Input1.wav"></Input1>
+					<Input2 Content="请输入用户密码,并以#号键结束。" VoicePath=".\Voice\Input2.wav"></Input2>
+					<AlreadyLogin1 Content="此线已经登录，不可重复登录。" VoicePath=".\Voice\AlreadyLogin1.wav"></AlreadyLogin1>
+					<AlreadyLogin2 Content="此用户代码在其它线路已经登录。" VoicePath=".\Voice\AlreadyLogin2.wav"></AlreadyLogin2>
+					<LoginSuccess Content="登录成功。" VoicePath=".\Voice\LoginSuccess.wav"></LoginSuccess>
+					<NoUser Content="用户代码无效。" VoicePath=".\Voice\NoUser.wav"></NoUser>
+					<WrongPwd Content="密码错误。" VoicePath=".\Voice\WrongPwd.wav"></WrongPwd>
+					<HintVoice Content="返回上一层请按*号键,退出请挂机。" VoicePath=".\Voice\H2.wav"></HintVoice>
+					<PlayLimit Content="对不起，您的限播次数已到。" VoicePath=".\Voice\PlayLimit.wav"></PlayLimit>
+					<ErrorVoice Content="对不起，您的输入有误,请重新输入。" VoicePath=".\Voice\ErrorInput.wav"></ErrorVoice>
+				</Voice>
+				<ReplayNum Description="放音循环次数" Value="3"></ReplayNum>
+				<WaitTime Description="等待时间(秒)" Value="4"></WaitTime>
+				<Extension Description="配置分机对应通道号码">
+					<Phone PhoneNum="101" ChannelNo="1"></Phone>
+					<Phone PhoneNum="102" ChannelNo="3"></Phone>
+					<Phone PhoneNum="103" ChannelNo="5"></Phone>
+					<Phone PhoneNum="104" ChannelNo="7"></Phone>
+				</Extension>
+				<NextNode>
+					<Key Code="*" NodeId="1" Desp="上一层菜单"></Key>
+				</NextNode>
+			</Content>
+			<SubNode/>
+		</Node>
+
+		<Node NodeId="12" Name="Logout" Description="坐席人员注销" Type="3">
+			<Content>
+				<Voice>
+					<Logout Content="注销成功,请挂机。" VoicePath=".\Voice\Logout.wav"></Logout>
+					<NotLogin Content="此线尚未登录，请先登录。" VoicePath=".\Voice\H6.wav"></NotLogin>
+				</Voice>
+				<NextNode>
+				</NextNode>
+			</Content>
+			<SubNode/>
+		</Node>
+
+		<Node NodeId="13" Name="Inside" Description="坐席拨分机" Type="4">
+			<Content>
+				<Voice>
+					<MainVoice Content="请输入分机号。" VoicePath=".\Voice\Input4.wav"></MainVoice>
+					<HintVoice Content="返回上一层请按*号键,退出请挂机。" VoicePath=".\Voice\H2.wav"></HintVoice>
+					<NotLogin Content="此线尚未登录，请先登录。" VoicePath=".\Voice\H6.wav"></NotLogin>
+					<NoPhoneNum Content="分机号不存在，请重新输入。" VoicePath=".\Voice\NoPhoneNum.wav"></NoPhoneNum>
+					<Busy Content="分机忙，请稍后再拨。" VoicePath=".\Voice\Busy1.wav"></Busy>
+					<PlayLimit Content="对不起，您的限播次数已到。" VoicePath=".\Voice\PlayLimit.wav"></PlayLimit>
+					<ErrorVoice Content="对不起，您的输入有误,请重新输入。" VoicePath=".\Voice\ErrorInput.wav"></ErrorVoice>
+				</Voice>
+				<ReplayNum Description="放音循环次数" Value="3"></ReplayNum>
+				<WaitTime Description="等待时间(秒)" Value="4"></WaitTime>
+				<Extension Description="配置分机对应通道号码">
+					<Phone PhoneNum="101" ChannelNo="1"></Phone>
+					<Phone PhoneNum="102" ChannelNo="3"></Phone>
+					<Phone PhoneNum="103" ChannelNo="5"></Phone>
+					<Phone PhoneNum="104" ChannelNo="7"></Phone>
+				</Extension>
+				<NextNode>
+					<Key Code="*" NodeId="1" Desp="上一层菜单"></Key>
+				</NextNode>
+			</Content>
+			<SubNode>
+			</SubNode>
+		</Node>
+
+		<Node NodeId="14" Name="Outside" Description="坐席拨外线" Type="5">
+			<Content>
+				<Voice>
+					<NotLogin Content="此线尚未登录，请先登录。" VoicePath=".\Voice\H6.wav"></NotLogin>
+					<Busy Content="线路忙，请稍后再拨。" VoicePath=".\Voice\Busy2.wav"/>
+					<PlayLimit Content="对不起，您的限播次数已到。" VoicePath=".\Voice\PlayLimit.wav"></PlayLimit>
+					<ErrorVoice Content="对不起，您的输入有误,请重新输入。" VoicePath=".\Voice\ErrorInput.wav"></ErrorVoice>
+					<ConfigError Content="配置文件有错误，请重新配置。" VoicePath=".\Voice\ConfigError.wav"/>
+				</Voice>
+				<Extension Description="配置外线通道是否连接外线">
+					<Channel ChannelNo="0" State="1"/>
+					<Channel ChannelNo="2" State="1"/>
+					<Channel ChannelNo="4" State="1"/>
+					<Channel ChannelNo="6" State="1"/>
+				</Extension>
+				<NextNode/>
+			</Content>
+			<SubNode/>
+		</Node>
+	</SubNode>
+</Node>
+
+<Node NodeId="2" Name="MainMenu2" Description="客服主菜单" Type="1">
+	<Content>
+		<Voice>
+			<WelcomeVoice Content="您好，欢迎拨打鹏程物流公司客户服务热线。" VoicePath=".\Voice\Welcome.wav"></WelcomeVoice>
+			<AdditionVoice Content="我公司将于7月份提供金卡优惠活动，详情请登录www.pengcheng.com。（公司简介、新业务宣传之类，可无。）" VoicePath=".\Voice\A1.wav"></AdditionVoice>
+			<MainVoice Content="业务咨询请按1，业务查询请按2，投诉及建议请按3，人工服务请按0。" VoicePath=".\Voice\Select2.wav"></MainVoice>
+			<PlayLimit Content="对不起，您的限播次数已到。" VoicePath=".\Voice\PlayLimit.wav"></PlayLimit>
+			<ErrorVoice Content="对不起，您的输入有误,请重新输入。" VoicePath=".\Voice\ErrorInput.wav"></ErrorVoice>
+		</Voice>
+		<ReplayNum Description="放音循环次数" Value="3"></ReplayNum>
+		<WaitTime Description="等待时间(秒)" Value="4"></WaitTime>
+		<NextNode>
+			<Key Code="1" NodeId="21"></Key>
+			<Key Code="2" NodeId="22"></Key>
+			<Key Code="0" NodeId="23"></Key>
+		</NextNode>
+	</Content>
+	<SubNode>
+		<Node NodeId="21" Name="Query" Description="现金结算" Type="6">
+					<Content>
+						<Voice>
+							<MainVoice Content="请输入运单编号，并以#号键结束。" VoicePath=".\Voice\Input3.wav"></MainVoice>
+							<Hint1 Content="您的货款" VoicePath=".\Voice\Hint1.wav"></Hint1>
+							<Hint2 Content="尚未到帐" VoicePath=".\Voice\Hint2.wav"></Hint2>
+							<Hint3 Content="已经到账" VoicePath=".\Voice\Hint3.wav"></Hint3>
+							<Hint4 Content="已经提走" VoicePath=".\Voice\Hint4.wav"></Hint4>
+							<Hint5 Content="您的货物已提走,货款" VoicePath=".\Voice\Hint5.wav"></Hint5>
+							<Hint6 Content="为" VoicePath=".\Voice\Hint6.wav"></Hint6>
+							<Hint7 Content="你的货物尚末到达" VoicePath=".\Voice\Hint7.wav"></Hint7>
+							<Hint8 Content="您的货物已经到达,尚未提货." VoicePath=".\Voice\Hint8.wav"></Hint8>
+							<Hint9 Content="数据查询中请稍等" VoicePath=".\Voice\Wait.wav"></Hint9>
+							<Hint10 Content="您的货物已被退回." VoicePath=".\Voice\Hint10.wav"></Hint10>
+							<D0 Content="0" VoicePath=".\Voice\D0.wav"/>
+							<D1 Content="1" VoicePath=".\Voice\D1.wav"/>
+							<D2 Content="2" VoicePath=".\Voice\D2.wav"/>
+							<D3 Content="3" VoicePath=".\Voice\D3.wav"/>
+							<D4 Content="4" VoicePath=".\Voice\D4.wav"/>
+							<D5 Content="5" VoicePath=".\Voice\D5.wav"/>
+							<D6 Content="6" VoicePath=".\Voice\D6.wav"/>
+							<D7 Content="7" VoicePath=".\Voice\D7.wav"/>
+							<D8 Content="8" VoicePath=".\Voice\D8.wav"/>
+							<D9 Content="9" VoicePath=".\Voice\D9.wav"/>
+							<Dot Content="." VoicePath=".\Voice\Dot.wav"/>
+							<Yi Content="." VoicePath=".\Voice\Yi.wav"/>
+							<Wan Content="." VoicePath=".\Voice\Wan.wav"/>
+							<Qian Content="." VoicePath=".\Voice\Qian.wav"/>
+							<Bai Content="." VoicePath=".\Voice\Bai.wav"/>
+							<Shi Content="." VoicePath=".\Voice\Shi.wav"/>
+							<Yuan Content="." VoicePath=".\Voice\Yuan.wav"/>
+							<Jiao Content="." VoicePath=".\Voice\Jiao.wav"/>
+							<Fen Content="." VoicePath=".\Voice\Fen.wav"/>
+							<Thanks Content="谢谢使用，再见" VoicePath=".\Voice\Thanks.wav"></Thanks>
+							<WrongId Content="运单编号错误。" VoicePath=".\Voice\WrongId.wav" />
+							<WrongLength Content="运单编号必须为8位。" VoicePath=".\Voice\WrongLength.wav" />
+							<HintVoice1 Content="返回上一层请按*号键，退出请挂机。" VoicePath=".\Voice\H2.wav"></HintVoice1>
+							<HintVoice2 Content="返回上一层请按*号键，返回主菜单请按#号键，重播请按9，退出请挂机。" VoicePath=".\Voice\H1.wav"></HintVoice2>
+							<PlayLimit Content="对不起，您的限播次数已到。" VoicePath=".\Voice\PlayLimit.wav"></PlayLimit>
+							<ErrorVoice Content="对不起，您的输入有误,请重新输入。" VoicePath=".\Voice\ErrorInput.wav"></ErrorVoice>
+						</Voice>
+						<ReplayNum Description="放音循环次数" Value="3"></ReplayNum>
+						<WaitTime Description="等待时间(秒)" Value="4"></WaitTime>
+						<SQL Description="SQL语句,用于判断此ID是否存在。" Value="select count(*) from view_bills where bill_no="></SQL>
+						<NextNode>
+							<Key0 Code="*" NodeId="2" Desp="上一层菜单,用于输入提示音的重播"></Key0>
+							<Key Code="9" NodeId="21" Type="0" Desp="重播,Type=0 表示在本节点继续本次处理。"></Key>
+							<Key Code="*" NodeId="21" Type="1" Desp="上一层菜单"></Key>
+							<Key Code="#" NodeId="2" Type="1" Desp="主菜单"></Key>
+						</NextNode>
+					</Content>
+					<SubNode/>
+				</Node>
+
+		<Node NodeId="22" Name="Query" Description="银行转帐" Type="6">
+					<Content>
+						<Voice>
+							<MainVoice Content="请输入运单编号，并以#号键结束。" VoicePath=".\Voice\Input3.wav"></MainVoice>
+							<Hint1 Content="您的货款" VoicePath=".\Voice\Hint1.wav"></Hint1>
+							<Hint2 Content="尚未到帐" VoicePath=".\Voice\Hint2.wav"></Hint2>
+							<Hint3 Content="已经到账" VoicePath=".\Voice\Hint3.wav"></Hint3>
+							<Hint4 Content="已经提走" VoicePath=".\Voice\Hint4.wav"></Hint4>
+							<Hint5 Content="您的货物已提走,货款" VoicePath=".\Voice\Hint5.wav"></Hint5>
+							<Hint6 Content="为" VoicePath=".\Voice\Hint6.wav"></Hint6>
+							<Hint7 Content="你的货物尚末到达" VoicePath=".\Voice\Hint7.wav"></Hint7>
+							<Hint8 Content="您的货物已经到达,尚未提货." VoicePath=".\Voice\Hint8.wav"></Hint8>
+							<Hint9 Content="数据查询中请稍等" VoicePath=".\Voice\Wait.wav"></Hint9>
+							<Hint10 Content="您的货物已被退回." VoicePath=".\Voice\Hint10.wav"></Hint10>
+							<Hint11 Content="已转入您的账户." VoicePath=".\Voice\Hint11.wav"></Hint11>
+							<D0 Content="0" VoicePath=".\Voice\D0.wav"/>
+							<D1 Content="1" VoicePath=".\Voice\D1.wav"/>
+							<D2 Content="2" VoicePath=".\Voice\D2.wav"/>
+							<D3 Content="3" VoicePath=".\Voice\D3.wav"/>
+							<D4 Content="4" VoicePath=".\Voice\D4.wav"/>
+							<D5 Content="5" VoicePath=".\Voice\D5.wav"/>
+							<D6 Content="6" VoicePath=".\Voice\D6.wav"/>
+							<D7 Content="7" VoicePath=".\Voice\D7.wav"/>
+							<D8 Content="8" VoicePath=".\Voice\D8.wav"/>
+							<D9 Content="9" VoicePath=".\Voice\D9.wav"/>
+							<Dot Content="." VoicePath=".\Voice\Dot.wav"/>
+							<Yi Content="." VoicePath=".\Voice\Yi.wav"/>
+							<Wan Content="." VoicePath=".\Voice\Wan.wav"/>
+							<Qian Content="." VoicePath=".\Voice\Qian.wav"/>
+							<Bai Content="." VoicePath=".\Voice\Bai.wav"/>
+							<Shi Content="." VoicePath=".\Voice\Shi.wav"/>
+							<Yuan Content="." VoicePath=".\Voice\Yuan.wav"/>
+							<Jiao Content="." VoicePath=".\Voice\Jiao.wav"/>
+							<Fen Content="." VoicePath=".\Voice\Fen.wav"/>
+							<Thanks Content="谢谢使用，再见" VoicePath=".\Voice\Thanks.wav"></Thanks>
+							<WrongId Content="运单编号错误。" VoicePath=".\Voice\WrongId.wav" />
+							<WrongLength Content="运单编号必须为8位。" VoicePath=".\Voice\WrongLength.wav" />
+							<HintVoice1 Content="返回上一层请按*号键，退出请挂机。" VoicePath=".\Voice\H2.wav"></HintVoice1>
+							<HintVoice2 Content="返回上一层请按*号键，返回主菜单请按#号键，重播请按9，退出请挂机。" VoicePath=".\Voice\H1.wav"></HintVoice2>
+							<PlayLimit Content="对不起，您的限播次数已到。" VoicePath=".\Voice\PlayLimit.wav"></PlayLimit>
+							<ErrorVoice Content="对不起，您的输入有误,请重新输入。" VoicePath=".\Voice\ErrorInput.wav"></ErrorVoice>
+						</Voice>
+						<ReplayNum Description="放音循环次数" Value="3"></ReplayNum>
+						<WaitTime Description="等待时间(秒)" Value="4"></WaitTime>
+						<SQL Description="SQL语句,用于判断此ID是否存在。" Value="select count(*) from view_bills where bill_no="></SQL>
+						<NextNode>
+							<Key0 Code="*" NodeId="2" Desp="上一层菜单，用于输入提示音的重播"></Key0>
+							<Key Code="9" NodeId="22" Type="0" Desp="重播,Type=0 表示在本节点继续本次处理"></Key>
+							<Key Code="*" NodeId="22" Type="1" Desp="上一层菜单"></Key>
+							<Key Code="#" NodeId="2" Type="1" Desp="主菜单"></Key>
+						</NextNode>
+					</Content>
+					<SubNode/>
+				</Node>
+
+		<Node NodeId="23" Name="Agent" Description="人工服务" Type="8">
+			<Content>
+				<Voice>
+					<Busy1 Content="座席忙，请稍后。" VoicePath=".\Voice\Busy3.wav"/>
+					<Busy2 Content="人工座席忙，请稍后再拨。" VoicePath=".\Voice\Busy30.wav"/>
+					<WaitMusic Content="可为一段音乐" VoicePath=".\Voice\WaitMusic.wav"/>
+					<NoListen Content="该电话无人接听，请挂机。" VoicePath=".\Voice\NoListen.wav"/>
+				</Voice>
+				<ReplayNum Description="放音循环次数" Value="3"></ReplayNum>
+				<WaitTime1 Description="等待时间(秒)" Value="15"></WaitTime1>
+				<WaitTime2 Description="无人接听等待时间(秒)" Value="30"></WaitTime2>
+				<DefaultChannel Description="当未有座席人员登录时,默认的连接通道." Value="1"></DefaultChannel>
+				<NextNode/>
+			</Content>
+			<SubNode/>
+		</Node>
+	</SubNode>
+</Node>
+</CTI>

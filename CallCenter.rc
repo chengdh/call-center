@@ -1,0 +1,745 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\CallCenter.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\CallCenter.ico"
+IDR_CallCenter2TYPE     ICON                    "res\\CallCenterDoc.ico"
+IDI_ICON1               ICON                    "res\\myicon.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDR_MYTOOLBAR           BITMAP                  "res\\MyToolBar.bmp"
+IDR_MYTOOLBAR2          BITMAP                  "res\\MyToolBar02.bmp"
+IDR_MYTOOLBAR3          BITMAP                  "res\\MyToolBar03.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_MAINFRAME TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_FILE_NEW
+    BUTTON      ID_FILE_OPEN
+    BUTTON      ID_FILE_SAVE
+    SEPARATOR
+    BUTTON      ID_EDIT_CUT
+    BUTTON      ID_EDIT_COPY
+    BUTTON      ID_EDIT_PASTE
+    SEPARATOR
+    BUTTON      ID_FILE_PRINT
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_MYTOOLBAR TOOLBAR  16, 15
+BEGIN
+    BUTTON      ID_EXIT
+    BUTTON      ID_CHANNEL
+    BUTTON      ID_EMPLOYEE
+    BUTTON      ID_LOG
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_MYTOOLBAR2 TOOLBAR  32, 32
+BEGIN
+    BUTTON      ID_EXIT
+    BUTTON      ID_CHANNEL
+    BUTTON      ID_EMPLOYEE
+    BUTTON      ID_LOG
+    BUTTON      ID_APP_ABOUT
+END
+
+IDR_MYTOOLBAR3 TOOLBAR  24, 24
+BEGIN
+    BUTTON      ID_EXIT
+    SEPARATOR
+    BUTTON      ID_CHANNEL
+    SEPARATOR
+    BUTTON      ID_EMPLOYEE
+    SEPARATOR
+    BUTTON      ID_LOG
+    SEPARATOR
+    BUTTON      ID_APP_ABOUT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU 
+BEGIN
+    POPUP "系统(&S)"
+    BEGIN
+        MENUITEM "退出(&X)",                    ID_EXIT
+    END
+    POPUP "管理操作(&M)"
+    BEGIN
+        MENUITEM "通道状态(&C)",                ID_CHANNEL
+        MENUITEM "坐席人员(&E)",                ID_EMPLOYEE
+        MENUITEM "系统日志(&L)",                ID_LOG
+    END
+    POPUP "帮助(&H)"
+    BEGIN
+        MENUITEM "关于(A)",                     ID_APP_ABOUT
+    END
+END
+
+IDR_MAINFRAME2 MENU 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "&Save\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "Save &As...",                 ID_FILE_SAVE_AS
+        MENUITEM SEPARATOR
+        MENUITEM "Recent File",                 ID_FILE_MRU_FILE1, GRAYED
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       ID_APP_EXIT
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo\tCtrl+Z",               ID_EDIT_UNDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "&Paste\tCtrl+V",              ID_EDIT_PASTE
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
+    END
+    POPUP "&Help"
+    BEGIN
+        MENUITEM "&About CallCenter...",        ID_APP_ABOUT
+    END
+END
+
+IDR_TRAYMENU MENU 
+BEGIN
+    POPUP "托盘(&T)"
+    BEGIN
+        MENUITEM "打开(&O)",                    ID_TRAY_OPEN
+        MENUITEM "关于(&A)",                    ID_TRAY_ABOUT
+        MENUITEM "退出(&X)",                    ID_EXIT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS 
+BEGIN
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
+    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 235, 55
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About CallCenter"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "CallCenter Version 1.0",IDC_STATIC,40,10,119,8,
+                    SS_NOPREFIX
+    LTEXT           "Copyright (C) 2006",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "OK",IDOK,178,7,50,16,WS_GROUP
+END
+
+IDD_CALLCENTER2_FORM DIALOGEX 0, 0, 526, 305
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TAB1,"SysTabControl32",0x0,7,7,512,291
+END
+
+IDD_DIALOG3 DIALOGEX 0, 0, 509, 280
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST3,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | 
+                    WS_BORDER | WS_TABSTOP,2,69,491,185
+    LTEXT           "查询日期：",IDC_STATIC,74,13,41,8
+    CONTROL         "",IDC_CHECKDATE,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    WS_TABSTOP,119,10,77,15
+    PUSHBUTTON      "查　询",IDC_BUTTON_CHECK,210,46,49,14
+    LTEXT           "起始时间：",IDC_STATIC,74,30,41,8
+    GROUPBOX        "日志查询",IDC_STATIC,3,2,271,63
+    GROUPBOX        "日志删除",IDC_STATIC,292,2,129,62,WS_GROUP
+    CONTROL         "",IDC_STARTDATE,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    WS_TABSTOP,119,28,77,15
+    LTEXT           "截止时间：",IDC_STATIC,74,49,41,8
+    CONTROL         "",IDC_ENDDATE,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    WS_TABSTOP,119,46,77,15
+    CONTROL         "按天查询",IDC_RADIO_DAY,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,15,13,48,10
+    CONTROL         "区间查询",IDC_RADIO_DISTANCE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,15,30,48,10
+    LTEXT           "截止日期：",IDC_STATIC,300,23,41,8
+    PUSHBUTTON      "删　除",IDC_BUTTON_DEL,357,46,50,14
+    CONTROL         "",IDC_DELDATE,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    WS_TABSTOP,344,20,63,15
+END
+
+IDD_DIALOG2 DIALOGEX 0, 0, 509, 254
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST2,"SysListView32",LVS_REPORT | LVS_SINGLESEL | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,2,7,491,220
+    PUSHBUTTON      "添　加",IDC_BUTTONADD,180,233,50,14
+    PUSHBUTTON      "删　除",IDC_BUTTONDEL,376,233,50,14
+    PUSHBUTTON      "修　改",IDC_BUTTONMODIFY,278,233,50,14
+    PUSHBUTTON      "刷　新",IDC_BUTTONUPDATE,82,233,50,14
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 509, 280
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST1,"SysListView32",LVS_REPORT | LVS_SINGLESEL | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,2,7,491,245
+END
+
+IDD_DIALOGADDEMPLOYEE DIALOGEX 0, 0, 284, 126
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "添加坐席人员信息"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "坐席人员信息",IDC_STATIC,5,3,272,96
+    LTEXT           "用户代码：",IDC_STATIC,20,18,42,8
+    EDITTEXT        IDC_EDIT_NO,64,15,71,14,ES_AUTOHSCROLL | ES_NUMBER
+    LTEXT           "姓名：",IDC_STATIC,157,18,37,8
+    EDITTEXT        IDC_EDIT_NAME,190,15,72,14,ES_AUTOHSCROLL
+    LTEXT           "性　　别：",IDC_STATIC,20,38,45,8
+    COMBOBOX        IDC_COMBO_SEX,64,36,48,35,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "年龄：",IDC_STATIC,159,39,25,8
+    EDITTEXT        IDC_EDIT_AGE,190,36,47,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_AGE,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS,239,36,10,14
+    LTEXT           "用户密码：",IDC_STATIC,20,59,41,8
+    EDITTEXT        IDC_EDIT_PWD1,64,55,105,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "确认密码：",IDC_STATIC,20,79,40,8
+    EDITTEXT        IDC_EDIT_PWD2,64,76,106,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    PUSHBUTTON      "添　加",IDC_BUTTON_ADDEMP,66,105,50,14
+    PUSHBUTTON      "取　消",IDC_CANCEL1,164,105,50,14
+    LTEXT           "*",IDC_REDHINT,139,18,8,8
+    LTEXT           "*",IDC_REDHINT2,266,19,8,8
+    LTEXT           "*",IDC_REDHINT3,174,60,8,8
+    LTEXT           "*",IDC_REDHINT4,174,81,8,8
+    LTEXT           "*",IDC_REDHINT5,115,40,8,8
+    LTEXT           "*",IDC_REDHINT6,254,40,8,8
+END
+
+IDD_DIALOG4 DIALOGEX 0, 0, 509, 280
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "查　询",IDC_BUTTON1,86,46,39,14
+    LTEXT           "结算状态：",IDC_STATIC,173,27,41,8
+    COMBOBOX        IDC_COMBOSTATE,217,25,75,56,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "查　询",IDC_BUTTON2,249,47,42,14
+    EDITTEXT        IDC_EDIT1,376,26,90,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "查　询",IDC_BUTTON3,423,47,41,14
+    CONTROL         "",IDC_LIST4,"SysListView32",LVS_REPORT | LVS_SINGLESEL | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,2,77,491,179
+    LTEXT           "业务编号：",IDC_STATIC,331,29,41,8
+    GROUPBOX        "按货物状态查询",IDC_STATIC,11,14,130,53
+    GROUPBOX        "代收款业务查询",IDC_STATIC,2,4,484,68
+    GROUPBOX        "按货款结算状态查询",IDC_STATIC,162,14,139,53,WS_GROUP
+    GROUPBOX        "按运输单编号查询",IDC_STATIC,324,14,151,53
+    LTEXT           "货物状态：",IDC_STATIC,20,26,41,8
+    COMBOBOX        IDC_COMBOFREIGHT,63,24,65,56,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+END
+
+IDD_DIALOGMODIFYEMPLOYEE DIALOGEX 0, 0, 284, 126
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "修改坐席人员信息"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "坐席人员信息",IDC_STATIC,5,3,272,96
+    LTEXT           "用户代码：",IDC_STATIC,20,18,42,8
+    EDITTEXT        IDC_EDIT_NO,64,15,69,14,ES_AUTOHSCROLL | ES_READONLY | 
+                    ES_NUMBER
+    LTEXT           "姓名：",IDC_STATIC,159,18,37,8
+    EDITTEXT        IDC_EDIT_NAME,190,15,68,14,ES_AUTOHSCROLL
+    LTEXT           "性　　别：",IDC_STATIC,20,38,45,8
+    COMBOBOX        IDC_COMBO_SEX,64,36,48,35,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    LTEXT           "年龄：",IDC_STATIC,159,38,25,8
+    EDITTEXT        IDC_EDIT_AGE,190,36,47,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "",IDC_SPIN_AGE,"msctls_updown32",UDS_SETBUDDYINT | 
+                    UDS_AUTOBUDDY | UDS_ARROWKEYS,239,36,10,14
+    LTEXT           "用户密码：",IDC_STATIC,20,59,41,8
+    EDITTEXT        IDC_EDIT_PWD1,64,55,105,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    LTEXT           "确认密码：",IDC_STATIC,20,79,40,8
+    EDITTEXT        IDC_EDIT_PWD2,64,76,106,14,ES_PASSWORD | ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    PUSHBUTTON      "修　改",IDC_BUTTON_ADDEMP,66,105,50,14
+    PUSHBUTTON      "取　消",IDC_CANCEL1,165,105,50,14
+    LTEXT           "*",IDC_REDHINT,137,19,8,8
+    LTEXT           "*",IDC_REDHINT3,173,80,8,8
+    LTEXT           "*",IDC_REDHINT2,173,58,8,8
+    LTEXT           "*",IDC_REDHINT4,261,19,8,8
+    LTEXT           "*",IDC_REDHINT5,115,40,8,8
+    LTEXT           "*",IDC_REDHINT6,253,40,8,8
+END
+
+IDD_DIALOG5 DIALOGEX 0, 0, 509, 280
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_LIST5,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | 
+                    WS_BORDER | WS_TABSTOP,2,69,491,182
+    LTEXT           "查询日期：",IDC_STATIC,74,13,41,8
+    CONTROL         "",IDC_CHECKDATE,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    WS_TABSTOP,119,10,77,15
+    PUSHBUTTON      "查　询",IDC_BUTTON_CHECK,290,47,49,14
+    LTEXT           "起始时间：",IDC_STATIC,74,30,41,8
+    GROUPBOX        "留言查询",IDC_STATIC,3,2,345,63
+    GROUPBOX        "留言删除",IDC_STATIC,355,2,129,62,WS_GROUP
+    CONTROL         "",IDC_STARTDATE,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    WS_TABSTOP,119,28,77,15
+    LTEXT           "截止时间：",IDC_STATIC,74,49,41,8
+    CONTROL         "",IDC_ENDDATE,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    WS_TABSTOP,119,46,77,15
+    CONTROL         "按天查询",IDC_RADIO_DAY,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,15,13,48,10
+    CONTROL         "区间查询",IDC_RADIO_DISTANCE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,15,30,48,10
+    LTEXT           "截止日期：",IDC_STATIC,363,23,41,8
+    PUSHBUTTON      "删　除",IDC_BUTTON_DEL,420,46,50,14
+    CONTROL         "",IDC_DELDATE,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    WS_TABSTOP,407,20,63,15
+    CONTROL         "",IDC_STARTTIME,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    DTS_UPDOWN | WS_TABSTOP | 0x8,201,28,77,15
+    CONTROL         "",IDC_ENDTIME,"SysDateTimePick32",DTS_RIGHTALIGN | 
+                    DTS_UPDOWN | WS_TABSTOP | 0x8,201,46,77,15
+END
+
+IDD_DIALOGPLAYER DIALOGEX 0, 0, 182, 74
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "留言播放"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "播 放",IDC_PLAY,43,46,31,14
+    PUSHBUTTON      "暂 停",IDC_PAUSE,75,46,31,14
+    PUSHBUTTON      "停 止",IDC_STOP,107,46,31,14
+    CONTROL         "",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,8,27,121,15
+    PUSHBUTTON      "起 始",IDC_START,11,46,31,14
+    PUSHBUTTON      "末 尾",IDC_END,139,46,31,14
+    CTEXT           "0:00 / 0:00",IDC_STATIC_TIME,130,29,44,12,
+                    SS_CENTERIMAGE | SS_SUNKEN,WS_EX_STATICEDGE
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "CallCenter.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "CallCenter.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 228
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 48
+    END
+
+    IDD_CALLCENTER2_FORM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 519
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 298
+    END
+
+    IDD_DIALOG3, DIALOG
+    BEGIN
+        RIGHTMARGIN, 502
+        TOPMARGIN, 2
+        BOTTOMMARGIN, 273
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 502
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 251
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 2
+        RIGHTMARGIN, 504
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 272
+    END
+
+    IDD_DIALOGADDEMPLOYEE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 277
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 119
+    END
+
+    IDD_DIALOG4, DIALOG
+    BEGIN
+        RIGHTMARGIN, 505
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 274
+    END
+
+    IDD_DIALOGMODIFYEMPLOYEE, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 277
+        TOPMARGIN, 3
+        BOTTOMMARGIN, 119
+    END
+
+    IDD_DIALOG5, DIALOG
+    BEGIN
+        RIGHTMARGIN, 502
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 273
+    END
+
+    IDD_DIALOGPLAYER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 175
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 67
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DIALOGADDEMPLOYEE DLGINIT
+BEGIN
+    IDC_COMBO_SEX, 0x403, 3, 0
+0xd0c4, "\000" 
+    IDC_COMBO_SEX, 0x403, 3, 0
+0xaec5, "\000" 
+    0
+END
+
+IDD_DIALOG4 DLGINIT
+BEGIN
+    IDC_COMBOSTATE, 0x403, 5, 0
+0xabc8, 0xbfb2, "\000" 
+    IDC_COMBOSTATE, 0x403, 7, 0
+0xb4ce, 0xe1bd, 0xe3cb, "\000" 
+    IDC_COMBOSTATE, 0x403, 7, 0
+0xd1d2, 0xe1bd, 0xe3cb, "\000" 
+    IDC_COMBOFREIGHT, 0x403, 5, 0
+0xabc8, 0xbfb2, "\000" 
+    IDC_COMBOFREIGHT, 0x403, 7, 0
+0xd1d2, 0xe1cc, 0xf5bb, "\000" 
+    IDC_COMBOFREIGHT, 0x403, 7, 0
+0xb4ce, 0xe1cc, 0xf5bb, "\000" 
+    IDC_COMBOFREIGHT, 0x403, 7, 0
+0xd1d2, 0xcbcd, 0xf5bb, "\000" 
+    0
+END
+
+IDD_DIALOGMODIFYEMPLOYEE DLGINIT
+BEGIN
+    IDC_COMBO_SEX, 0x403, 3, 0
+0xd0c4, "\000" 
+    IDC_COMBO_SEX, 0x403, 3, 0
+0xaec5, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE initialization failed.  Make sure that the OLE libraries are the correct version."
+END
+
+STRINGTABLE 
+BEGIN
+    IDR_MAINFRAME           "CallCenter\n\nCallCenter\n\n\nCallCenter.Document\nCallCenter.Document"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_APP_TITLE       "CallCenter"
+    AFX_IDS_IDLEMESSAGE     "Ready"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_INDICATOR_EXT        "EXT"
+    ID_INDICATOR_CAPS       "CAP"
+    ID_INDICATOR_NUM        "NUM"
+    ID_INDICATOR_SCRL       "SCRL"
+    ID_INDICATOR_OVR        "OVR"
+    ID_INDICATOR_REC        "REC"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_NEW             "Create a new document\nNew"
+    ID_FILE_OPEN            "Open an existing document\nOpen"
+    ID_FILE_CLOSE           "Close the active document\nClose"
+    ID_FILE_SAVE            "Save the active document\nSave"
+    ID_FILE_SAVE_AS         "Save the active document with a new name\nSave As"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_APP_ABOUT            "Display program information, version number and copyright\nAbout"
+    ID_APP_EXIT             "Quit the application; prompts to save documents\nExit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_FILE_MRU_FILE1       "Open this document"
+    ID_FILE_MRU_FILE2       "Open this document"
+    ID_FILE_MRU_FILE3       "Open this document"
+    ID_FILE_MRU_FILE4       "Open this document"
+    ID_FILE_MRU_FILE5       "Open this document"
+    ID_FILE_MRU_FILE6       "Open this document"
+    ID_FILE_MRU_FILE7       "Open this document"
+    ID_FILE_MRU_FILE8       "Open this document"
+    ID_FILE_MRU_FILE9       "Open this document"
+    ID_FILE_MRU_FILE10      "Open this document"
+    ID_FILE_MRU_FILE11      "Open this document"
+    ID_FILE_MRU_FILE12      "Open this document"
+    ID_FILE_MRU_FILE13      "Open this document"
+    ID_FILE_MRU_FILE14      "Open this document"
+    ID_FILE_MRU_FILE15      "Open this document"
+    ID_FILE_MRU_FILE16      "Open this document"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
+    ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCSIZE          "Change the window size"
+    AFX_IDS_SCMOVE          "Change the window position"
+    AFX_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    AFX_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    AFX_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    AFX_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    AFX_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE 
+BEGIN
+    AFX_IDS_SCRESTORE       "Restore the window to normal size"
+    AFX_IDS_SCTASKLIST      "Activate Task List"
+END
+
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\CallCenter.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
