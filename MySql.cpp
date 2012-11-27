@@ -254,7 +254,38 @@ CString MySql::getStateFromFreight(CString FreightId, _ConnectionPtr pConn)
 		StateFromFreight->Close();
 		StateFromFreight = NULL;
 	//}	
-	return strState;
+	return translate_bill_state(strState);
+}
+
+//转换运单状态
+CString MySql::translate_bill_state(CString origin_state)
+{
+	CString ret_state = "";
+	//已开票、已装车、已发货 ----> 已发货
+	if(origin_state == "billed" || origin_state == "loaded" || origin_state == "sended")
+		ret_state = "sended";
+	//已到货、已分货 -----------》未提货
+	else if(origin_state == "reached" || origin_state == "distributed")
+		ret_state = "not_deliveried";
+	//已提货 已日结 已返款 已到账 ------> 已提货
+	else if(origin_state == "deliveried" || origin_state == "settlemented" || origin_state == "refunded" || origin_state == "refunded_confirmed")
+		ret_state = "deliveried";
+	//等待支付货款 ----> 已提货待提款
+	else if(origin_state == "payment_listed")
+		ret_state = "payment_listed";
+	//已支付 已过账 ----》 已转账
+	else if(origin_state == "paid" || origin_state == "posted")
+		ret_state = "paid";
+	//已退货 ------》已退货
+	else if(origin_state == "returned")
+		ret_state ="returned";
+
+	//已注销 已作废 -----》已作废
+	else if(origin_state == "invalidated" || origin_state == "canceled")
+		ret_state = "canceled";
+
+	return ret_state;
+
 }
 
 CString MySql::getMoneyStateFromFreight(CString FreightId, _ConnectionPtr pConn)
@@ -308,13 +339,14 @@ CString MySql::getMoneyStateFromFreight(CString FreightId, _ConnectionPtr pConn)
 	//}	
 	return strMoneyState;
 }
-
+//获取运费信息
 CString MySql::getMoneyFromFreight(CString FreightId, _ConnectionPtr pConn)
 {
 	CString strMoney = "";
 	CString strSqlFind = "";
 	_variant_t RecordsAffected = 0;
 	_ConnectionPtr MoneyFromFreight;
+	double money = 0.0;
 	MoneyFromFreight.CreateInstance(__uuidof(Connection));
 	MoneyFromFreight->ConnectionString = "DSN=lmis";
 	try
@@ -339,7 +371,7 @@ CString MySql::getMoneyFromFreight(CString FreightId, _ConnectionPtr pConn)
 	//{
 		//MoneyFromFreightCount++;
 	//}
-	strSqlFind.Format(_T("select goods_fee from view_bills where bill_no='%s' "),FreightId);
+	strSqlFind.Format(_T("select goods_fee from view_bills where bill_no='%s'"),FreightId);
 	MoneyFromFreight->AddRef();
 	try
 	{
@@ -347,7 +379,11 @@ CString MySql::getMoneyFromFreight(CString FreightId, _ConnectionPtr pConn)
 		if(!pSet->EndOfFile)
 		{
 		//	pSet->MoveFirst();
-			strMoney = (LPCTSTR)(_bstr_t)pSet->GetCollect(long(0));	
+			
+			//strMoney = (LPCTSTR)(_bstr_t)pSet->GetCollect(long(0));
+			money = pSet->GetCollect(long(0));
+			strMoney.Format(_T("%18.0f"), money*100);
+			//strMoney = (LPCTSTR)(_bstr_t)pSet->GetCollect(long(0));	
 		}	
 		//pConn->Close();
 	}

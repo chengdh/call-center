@@ -76,19 +76,19 @@ BOOL CCallCenterApp::InitInstance()
 	AddDocTemplate(pDocTemplate);
 	// 分析标准外壳命令、DDE、打开文件操作的命令行
 	CCommandLineInfo cmdInfo;
-	AfxMessageBox("before parseCommandLine");
+	//AfxMessageBox("before parseCommandLine");
 	cmdInfo.m_nShellCommand = CCommandLineInfo::FileNew; 
 	ParseCommandLine(cmdInfo);
 	// 调度在命令行中指定的命令。如果
 	// 用 /RegServer、/Register、/Unregserver 或 /Unregister 启动应用程序，则返回 FALSE。
-	AfxMessageBox("before shellCommandLine");
+	//AfxMessageBox("before shellCommandLine");
 	//AfxMessageBox(cmdInfo.);
 	if (!ProcessShellCommand(cmdInfo))
 	{
 		AfxMessageBox("parseCommandLine fail");
 		return FALSE;
 	}
-	AfxMessageBox("after parseCommandLine");
+	//AfxMessageBox("after parseCommandLine");
 	// 唯一的一个窗口已初始化，因此显示它并对其进行更新
 	m_pMainWnd->ShowWindow(SW_SHOW);
 	AfxMessageBox("after show mainwnd");

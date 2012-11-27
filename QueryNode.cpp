@@ -48,10 +48,11 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
 
   if( state == CH_QUERY && playCount == 0 )
   {
-    waitTime = myXml.getWaitTimeOrReplayNumByNodeId(channel.CurrNodeId,_T("WaitTime"));
-    replayNum = myXml.getWaitTimeOrReplayNumByNodeId(channel.CurrNodeId,_T("ReplayNum"));
-    bFlag1 = myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("MainVoice"),VoicePath1);
-    bFlag2 = myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("HintVoice1"),HintVoice1);
+    waitTime = myXml.getWaitTimeOrReplayNumByNodeId(channel.CurrNodeId,_T("WaitTime"));   //等待时间
+    replayNum = myXml.getWaitTimeOrReplayNumByNodeId(channel.CurrNodeId,_T("ReplayNum"));  //限播次数
+    bFlag1 = myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("MainVoice"),VoicePath1);   //您好，欢迎拨打燕赵物流公司客户服务热线
+	//返回上一层请按*号键，退出请挂机,在主菜单下，该项不存在
+    bFlag2 = myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("HintVoice1"),HintVoice1); 
   }
 
   switch(channel.nType)
@@ -98,6 +99,7 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
 
   switch(state)
   {
+	  //播放语音
     case CH_QUERY:
       channel.nTimeElapse = 0;
       strState = _T("播放语音");
@@ -120,6 +122,7 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
       playCount++;
       state = CH_WAITDIAL1;
       break;
+	//等待用户按键
     case CH_WAITDIAL1:
       strState = _T("等待拨号");
       tmpState = pList1->GetItemText(LineNo,2);
@@ -129,6 +132,7 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
       if( CheckIndexPlayFile(LineNo) )
       {
         StopIndexPlayFile(LineNo);
+		//判定是否已到限拨次数
         if( channel.nTimeElapse > waitTime*1000 )
         {
           if( playCount < replayNum )
@@ -154,6 +158,8 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
         playCount = 0;
       }
       break;
+
+	//获取用户输入 1或0
     case CH_GETDIAL1:
       strState = _T("接受用户拨号");
       tmpState = pList1->GetItemText(LineNo,2);
@@ -168,6 +174,7 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
         channel.TelLength++;
 
         int nextNodeId = 0;
+		//根据用户输入判定执行节点
         if( myXml.findKey0ByCode(channel.CurrNodeId,GetCodeAscii(tempCode),nextNodeId) )
         {
           channel.CurrNodeId = nextNodeId;
@@ -191,6 +198,8 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
       if( tmpState != (LPCTSTR)channel.DTMFCode )
         pList1->SetItemText(LineNo,4,channel.DTMFCode);
       break;
+	  
+	  //根据运单编号查询运单
     case CH_GETDIAL2:
       strState = _T("接受运单编号");
       tmpState = pList1->GetItemText(LineNo,2);
@@ -241,12 +250,14 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
       if( tmpState != (LPCTSTR)channel.DTMFCode )
         pList1->SetItemText(LineNo,4,channel.DTMFCode);
       break;
+
+	//播放查询结果
     case CH_PLAYRESULT:
       channel.nTimeElapse = 0;
       channel.TelLength = 0;
       strState = _T("播放语音");
       tmpState = pList1->GetItemText(LineNo,2);
-      if( tmpState != strState )
+      if( tmpState != strState)
         pList1->SetItemText(LineNo,2,strState);
 
       RsetIndexPlayFile(LineNo);
@@ -254,105 +265,22 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
       strMoney = _T("");
       strState = _T("");
       strState = mySql.getStateFromFreight(inputCode,pConn1);
-      strMoneyState = mySql.getMoneyStateFromFreight(inputCode, pConn1);
+	  strMoney = mySql.getMoneyFromFreight(inputCode,pConn1);
+      //strMoneyState = mySql.getMoneyStateFromFreight(inputCode, pConn1);
       if( playCount2 == 0 )
       {
-        if(strState.Trim() == CString("billed") || strState.Trim() == CString("loaded") || strState.Trim() == CString("shipped"))
-        {
-          if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint9"),VoicePath7) ) //数据查询中,请等待
-          {
-            AddIndexPlayFile(LineNo,VoicePath7);
-          }
-          if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint7"),VoicePath7) ) //货物尚未到达
-          {
-            AddIndexPlayFile(LineNo,VoicePath7);
-          }
-        }
+	
+		    if(strState.Trim()== CString("paid"))
+				set_paid_voice(LineNo,channel,strMoney);
 
-        if(strState.Trim() == CString("reached"))
-        {
-          if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint9"),VoicePath8) )
-          {
-            AddIndexPlayFile(LineNo,VoicePath8);
-          }
-          if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint8"),VoicePath8) ) //货物已到达,尚未提货
-          {
-            AddIndexPlayFile(LineNo,VoicePath8);
-          }
-        }
+			else if(strState.Trim() == CString("canceled"))
+				set_canceled_voice(LineNo,channel);
+			else
+				set_normal_voice(LineNo,channel,strState,strMoney);
 
-        if(strState.Trim() == CString("returned"))  //货物已退回
-        {
-          if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint9"),VoicePath8) )
-          {
-            AddIndexPlayFile(LineNo,VoicePath8);
-          }
-          if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint10"),VoicePath10) )
-          {
-            AddIndexPlayFile(LineNo,VoicePath10);
-          }
-        }
-        //报货款
-        if(strState.Trim() == CString("deliveried") || strState.Trim() == CString("settlemented") || strState.Trim() == CString("refunded") ||   strState.Trim() == CString("refunded_confirmed") || strState.Trim() == CString("payment_listed") || strState.Trim() == CString("paid") || strState.Trim() == CString("posted"))
-        {
-          if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint9"),VoicePath8) )
-          {
-            AddIndexPlayFile(LineNo,VoicePath8);
-          }
-        }
-        //货款尚未到账
-        if(strState.Trim() == CString("deliveried") || strState.Trim() == CString("settlemented") || strState.Trim() == CString("refunded")  )  //已提货
-        {
-
-          if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint2"),VoicePath3) )
-          {
-            AddIndexPlayFile(LineNo,VoicePath3);
-          }
-
-        }
-        //已到账
-        if(strState.Trim() == CString("refunded_confirmed") ||strState.Trim() == CString("payment_listed"))
-        {
-
-          if(channel.CurrNodeId == 21)  //现金支付
-          {
-            if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint3"),VoicePath3) )  //已经到账
-            {
-              AddIndexPlayFile(LineNo,VoicePath3);
-            }
-          }
-          if(channel.CurrNodeId == 22) //银行转账
-          {
-            if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint2"),VoicePath3) ) //尚未到账
-            {
-              AddIndexPlayFile(LineNo,VoicePath3);
-            }
-          }
-
-        }
-        //已提款
-        if(strState.Trim() == CString("paid") || strState.Trim() == CString("posted"))
-        {
-          if(channel.CurrNodeId == 21)
-          {
-            if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint4"),VoicePath3) ) //已经提走
-            {
-              AddIndexPlayFile(LineNo,VoicePath3);
-            }
-          }
-          if(channel.CurrNodeId == 22)
-          {
-            if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("Hint11"),VoicePath3) ) //已转入账户
-            {
-              AddIndexPlayFile(LineNo,VoicePath3);
-            }
-          }
-
-
-        }
       }
 
-      if( myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("HintVoice2"),HintVoice2) )
+      if( myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("up_home"),HintVoice2) )
       {
         AddIndexPlayFile(LineNo,HintVoice2);
       }
@@ -494,7 +422,100 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
   }//end switch
 
 }
+//已提款语音
+//您的货款已转账
+//转账金额： xxx
+void QueryNode::set_paid_voice(int LineNo,Channel &channel,CString fee){
+	LPTSTR voice_path_wait = "";
+	LPTSTR voice_path_paid = "";
+	LPTSTR voice_path_goods_fee_is = "";
+	if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("wait"),voice_path_wait) ) //数据查询中,请等待
+            AddIndexPlayFile(LineNo,voice_path_wait);
+	if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("paid"),voice_path_paid) ) //您的货款已转账
+            AddIndexPlayFile(LineNo,voice_path_paid);
+	if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("goods_fee_is"),voice_path_goods_fee_is) ) //转账金额
+            AddIndexPlayFile(LineNo,voice_path_goods_fee_is);
+	set_fee_voice(LineNo,channel,fee);
+	//货款金额
+}
+//已作废语音
+//该票已作废
+void QueryNode::set_canceled_voice(int LineNo,Channel &channel){
+	LPTSTR voice_path_invalidated = "";
+	LPTSTR voice_path_wait = "";
+	if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("wait"),voice_path_wait) ) //数据查询中,请等待
+            AddIndexPlayFile(LineNo,voice_path_wait);
+	if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("invalidated"),voice_path_invalidated) ) //该票已作废
+            AddIndexPlayFile(LineNo,voice_path_invalidated);
+}
+//正常处理语音
+//您的货款 xxxx元
+//货物状态
+void QueryNode::set_normal_voice(int LineNo,Channel &channel,CString state,CString rmb_num){
+	LPTSTR voice_path_your_goods_fee = ""; 
+	if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("your_goods_fee"),voice_path_your_goods_fee) ) //您的货款
+		AddIndexPlayFile(LineNo,voice_path_your_goods_fee);
 
+	//货款语音
+	set_fee_voice(LineNo,channel,rmb_num);
+	LPTSTR voice_path_goods_state_is = "";
+	if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,_T("goods_state_is"),voice_path_goods_state_is) ) //货物状态
+		AddIndexPlayFile(LineNo,voice_path_goods_state_is);
+
+	LPTSTR voice_path_goods_state = "";
+	if(	myXml.findVoiceNameByNodeId(channel.CurrNodeId,state.GetBuffer(20),voice_path_goods_state) ) //状态
+		AddIndexPlayFile(LineNo,voice_path_goods_state);
+}
+
+//将数字转换为大写汉字
+CString QueryNode::rmb_dx(CString rmb_num){
+	CString szChMoney,szNum; 
+	int iLen, iNum, iAddZero=0;
+
+	TCHAR* hzUnit[18]={_T("分"),_T("角"),_T("元"),_T("拾"),_T("佰"),_T("仟"),_T("万"),_T("拾"),_T("佰"),_T("仟"),_T("亿"),_T("拾"),_T("佰"),_T("仟"),_T("万"),_T("拾"),_T("佰"),_T("仟")};
+	TCHAR* hzNum[10]={_T("零"),_T("壹"),_T("贰"),_T("叁"),_T("肆"),_T("伍"),_T("陆"),_T("柒"),_T("捌"),_T("玖")};
+ 
+	//szNum.Format(_T("%18.0f"), rmb_num*100); //这样可能会有数字误差，double只有15位有效数字,这里只有13
+	szNum = rmb_num;
+	szNum.TrimLeft();
+	iLen=szNum.GetLength();
+
+	if(iLen>15 || iLen==0)
+		return ""; //数据错误返回
+
+	for(int i=0;i<iLen;i++){
+		iNum=_ttoi((LPCTSTR)szNum.Mid(i,1));
+		if(iNum==0)
+			iAddZero++;
+		else{
+			if(iAddZero>0) 
+				szChMoney+=_T("零");
+			szChMoney+=hzNum[iNum];
+			iAddZero=0;
+		}   
+		if(iNum!=0||iLen-i==3||iLen-i==11||((iLen-i+1)%8==0&&iAddZero<4)) //该位不为0||元位||亿位||万位
+			szChMoney+=hzUnit[iLen-i-1];
+	}
+
+	if(szNum.Right(2)==_T("00")) 
+		szChMoney+=_T("整");
+	return szChMoney;
+}
+//设置货款语音
+void QueryNode::set_fee_voice(int LineNo,Channel &channel,CString fee_str){
+	//转换为金额大写
+	CString fee_dx = _T(rmb_dx(fee_str));
+	//循环获取语音文件
+	for(int i = 0;i < fee_dx.GetLength();i=i+2)
+	{
+		LPTSTR voice_path = "";
+		CString s(_T(fee_dx).Mid(i,2));
+		if(myXml.findVoiceNameByContent(channel.CurrNodeId,s,voice_path))
+			AddIndexPlayFile(LineNo,voice_path);
+
+	}
+
+}
 void QueryNode::ResetLine(int LineNo,Channel &channel)
 {
   if( channel.nType == CHTYPE_TRUNK )

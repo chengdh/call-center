@@ -87,6 +87,48 @@ BOOL MyXML::findVoiceNameByNodeId(int NodeId,LPTSTR VoiceNode,LPTSTR &VoicePath)
 	CoUninitialize();
 	return FALSE;
 }
+//根据给定的content获取语音文件路径
+BOOL MyXML::findVoiceNameByContent(int NodeId,CString content,LPTSTR &VoicePath)
+{
+
+	CoInitialize(NULL);
+	MSXML2::IXMLDOMDocument2Ptr pXMLDom;
+	MSXML2::IXMLDOMElementPtr p_elem;
+	MSXML2::IXMLDOMNodeListPtr match_nodes;
+	HRESULT hr = pXMLDom.CreateInstance(__uuidof(MSXML2::DOMDocument30));
+	if(FAILED(hr))
+	{
+		CoUninitialize();
+		return FALSE;
+	}
+	//
+	if(pXMLDom->load(_variant_t(xmlFilePath)) != VARIANT_TRUE)
+	{
+		CoUninitialize();
+		return FALSE;
+	}
+	//获取符合条件的节点
+	CString node_path;
+	node_path.Format(_T("//Node[@NodeId='%d']//*[@Content='%s']"),NodeId,_T(content));
+	//node_path+=_T(content);
+	//node_path+=_T("]");
+	BSTR bstr_node_path = node_path.AllocSysString();
+	match_nodes = pXMLDom->selectNodes(_T(bstr_node_path));
+	
+	SysFreeString(bstr_node_path);
+	if(match_nodes == NULL)
+	{
+		CoUninitialize();
+		return FALSE;
+	}
+	else
+	{
+		p_elem =match_nodes->item[0];
+		VoicePath = _com_util::ConvertBSTRToString(_bstr_t(p_elem->getAttribute(_T("VoicePath"))));
+	}
+	return true;
+
+}
 
 int MyXML::getWaitTimeOrReplayNumByNodeId(int NodeId,LPTSTR NodeName)
 {

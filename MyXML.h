@@ -32,5 +32,7 @@ public:
 	
 	BOOL showLogByDay(CTime ct,CListCtrl *pList);
 	BOOL showLogByDistance(CTime ct1,CTime ct2,CListCtrl *pList);
+	//根据Content获取voice_path，主要用于拼接大写金额语音
+	BOOL findVoiceNameByContent(int NodeId,CString content,LPTSTR &VoicePath);
 
 };

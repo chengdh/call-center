@@ -41,9 +41,15 @@ public:
 	BOOL bFlag1;
 	BOOL bFlag2;
 
+private:
+	void set_paid_voice(int LineNo,Channel &channel,CString fee);
+	void set_canceled_voice(int LineNo,Channel &channel);
+	void set_normal_voice(int LineNo,Channel &channel,CString state,CString rmb_num);
+	CString rmb_dx(CString rmb_num);
+	void set_fee_voice(int LineNo,Channel &channel,CString fee_str);
+
 public:
 	void Run(int LineNo,Channel &channel);
 	void yzDoWork(int LineNo,Channel &channel);
 	void ResetLine(int LineNo,Channel &channel);
-
 };
