@@ -34,6 +34,7 @@ public:
 	CString strState;
 	CString strMoney;
 	CString strMoneyState;
+	CString strActPayFee;
 	int waitTime;
 	int replayNum;
 	LPTSTR VoicePath1;

@@ -167,17 +167,7 @@ BOOL MySql::findFreightId(CString FreightId, _ConnectionPtr pConn, CString strSq
 		return false;
 	}
 	
-	//CString m_strConn1 =_T("Provider=MSDASQL.1;Password=lmis;User ID=lmis;STMT=SET NAMES 'GBK';Extended Properties=\"DRIVER={MySQL ODBC 3.51 Driver};DB=lmis;SERVER=218.28.134.125;UID=lmis;PASSWORD=lmis;PORT=3306;\"");  
-	//CString m_strConn1 ="Provider=MSDAORA.1;Data Source=zhao;User Id=lmis;Password=lmis";
-	//if(tmpFindFreightID == NULL)
-	//{
-	//	tmpFindFreightID = openOracleConnection(_com_util::ConvertStringToBSTR(m_strConn1),"","",adOpenUnspecified);
-		//findfrightIDCount = 1;
-	//}else
-	//{
-		//findfrightIDCount++;
-	//}
-		//strSqlFind.Format(_T("select count(*) from FREIGHTLIST where FREIGHTNO='%s' "),FreightId);
+	
 	strSqlFind = strSql + CString("'") +FreightId + CString("'");
 	tmpFindFreightID->AddRef();
 	try
@@ -338,6 +328,48 @@ CString MySql::getMoneyStateFromFreight(CString FreightId, _ConnectionPtr pConn)
 		MoneyStateFromFreight = NULL;
 	//}	
 	return strMoneyState;
+}
+//获取实际转账运费信息
+CString MySql::getActPayFee(CString FreightId,_ConnectionPtr pConn)
+{
+	CString strMoney = "";
+	CString strSqlFind = "";
+	_variant_t RecordsAffected = 0;
+	_ConnectionPtr MoneyFromFreight;
+	double money = 0.0;
+	MoneyFromFreight.CreateInstance(__uuidof(Connection));
+	MoneyFromFreight->ConnectionString = "DSN=lmis";
+	try
+	{
+		MoneyFromFreight->Open("","","",adConnectUnspecified);
+	}
+	catch(_com_error e)
+	{
+		AfxMessageBox(""+e.Description());
+		return strMoney;
+	}
+	
+	strSqlFind.Format(_T("select act_pay_fee from view_bills where bill_no='%s'"),FreightId);
+	MoneyFromFreight->AddRef();
+	try
+	{
+		_RecordsetPtr pSet=MoneyFromFreight->Execute(strSqlFind.AllocSysString(),&RecordsAffected,adCmdText);			
+		if(!pSet->EndOfFile)
+		{
+	
+			money = pSet->GetCollect(long(0));
+			strMoney.Format(_T("%18.0f"), money*100);
+
+		}	
+	}
+	catch(_com_error e)
+	{
+		AfxMessageBox("11"+e.Description());
+	}
+	
+	MoneyFromFreight->Close();
+	MoneyFromFreight = NULL;
+	return strMoney;
 }
 //获取运费信息
 CString MySql::getMoneyFromFreight(CString FreightId, _ConnectionPtr pConn)

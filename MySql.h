@@ -32,8 +32,9 @@ public:
 	_RecordsetPtr getFreightDetailsByState(CString state,_ConnectionPtr pConn);
 	_RecordsetPtr getFreightDetailsByFreightId(CString freightId,_ConnectionPtr pConn);
 	CString getMoneyFromFreight(CString FreightId,_ConnectionPtr pConn);
+	CString getActPayFee(CString FreightId,_ConnectionPtr pConn);
 private:
 	//×ª»»Æ±¾Ý×´Ì¬
-	CString MySql::translate_bill_state(CString origin_state);
+	CString translate_bill_state(CString origin_state);
 
 };

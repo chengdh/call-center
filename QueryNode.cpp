@@ -10,6 +10,7 @@ QueryNode::QueryNode(void)
   memset(inputCode,0,100);
   strState = "";
   strMoney = "";
+  strActPayFee = "";
   strMoneyState = "";
   bFlag1 = FALSE;
   bFlag2 = FALSE;
@@ -266,12 +267,13 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
       strState = _T("");
       strState = mySql.getStateFromFreight(inputCode,pConn1);
 	  strMoney = mySql.getMoneyFromFreight(inputCode,pConn1);
+	  strActPayFee = mySql.getActPayFee(inputCode,pConn1);
       //strMoneyState = mySql.getMoneyStateFromFreight(inputCode, pConn1);
       if( playCount2 == 0 )
       {
 	
 		    if(strState.Trim()== CString("paid"))
-				set_paid_voice(LineNo,channel,strMoney);
+				set_paid_voice(LineNo,channel,strActPayFee);
 
 			else if(strState.Trim() == CString("canceled"))
 				set_canceled_voice(LineNo,channel);
