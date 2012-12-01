@@ -271,7 +271,7 @@ CString MySql::translate_bill_state(CString origin_state)
 		ret_state ="returned";
 
 	//已注销 已作废 -----》已作废
-	else if(origin_state == "invalidated" || origin_state == "canceled")
+	else if(origin_state == "invalided" || origin_state == "canceled")
 		ret_state = "canceled";
 
 	return ret_state;

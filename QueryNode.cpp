@@ -265,6 +265,7 @@ void QueryNode::yzDoWork(int LineNo,Channel &channel)
 
       strMoney = _T("");
       strState = _T("");
+	  strActPayFee = _T("");
       strState = mySql.getStateFromFreight(inputCode,pConn1);
 	  strMoney = mySql.getMoneyFromFreight(inputCode,pConn1);
 	  strActPayFee = mySql.getActPayFee(inputCode,pConn1);
